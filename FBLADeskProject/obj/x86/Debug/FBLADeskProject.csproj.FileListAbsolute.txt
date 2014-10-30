@@ -1,0 +1,68 @@
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.exe
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.pdb
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmLogin.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.Properties.Resources.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.GenerateResource.Cache
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.exe
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.pdb
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csprojResolveAssemblyReference.cache
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmHome.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateWkshp.resources
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.exe
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.pdb
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csprojResolveAssemblyReference.cache
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateWkshp.resources
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmHome.resources
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmLogin.resources
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.Properties.Resources.resources
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.GenerateResource.Cache
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.exe
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.pdb
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\bin\Debug\MySql.Data.dll
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateUser.resources
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.exe
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.pdb
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.exe
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.pdb
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\bin\Debug\MySql.Data.dll
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csprojResolveAssemblyReference.cache
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateUser.resources
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateWkshp.resources
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmHome.resources
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmLogin.resources
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.Properties.Resources.resources
+\\tsclient\Z\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.GenerateResource.Cache
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegConf.resources
+\\atec.net\wh\dev\lopezl\Documents\Projects\FBLADesk\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegWkshp.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateUser.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegConf.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegWkshp.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.ResolveComReference.cache
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmChangePasswd.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmProfile.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmReport.resources
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\Interop.AcroPDFLib.dll
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\Interop.AcroPDFLib.dll
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.ResolveComReference.cache
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.exe
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.pdb
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.exe
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.pdb
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csprojResolveAssemblyReference.cache
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmChangePasswd.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateUser.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateWkshp.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmHome.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmLogin.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmProfile.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegConf.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegWkshp.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmReport.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.Properties.Resources.resources
+C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.GenerateResource.Cache
