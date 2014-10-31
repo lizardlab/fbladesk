@@ -18,7 +18,7 @@ The project is preconfigured to work and a binary is already included, see below
 2. Import the *database.sql* file into the database.
 3. Run the FBLA Desktop Application.
 4. Login with the following credentials. **Username:** admin, **Password:** password.
-5. Now add new workshops and users nad interact to your heart's content.
+5. Now add new workshops/users and interact to your heart's content.
 
 ## Editing the database connection
 
