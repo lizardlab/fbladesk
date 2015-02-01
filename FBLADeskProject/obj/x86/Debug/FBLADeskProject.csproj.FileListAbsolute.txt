@@ -45,24 +45,3 @@ C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskPro
 C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\obj\x86\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\bin\Debug\Interop.AcroPDFLib.dll
 C:\Users\Logan\Documents\Visual Studio 2010\Projects\FBLADeskProject\FBLADeskProject\bin\Debug\AxInterop.AcroPDFLib.dll
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\Interop.AcroPDFLib.dll
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\AxInterop.AcroPDFLib.dll
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.ResolveComReference.cache
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.exe
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.pdb
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.exe
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\FBLADeskProject.pdb
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\Interop.AcroPDFLib.dll
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\bin\Debug\AxInterop.AcroPDFLib.dll
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csprojResolveAssemblyReference.cache
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmChangePasswd.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateUser.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmCreateWkshp.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmHome.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmLogin.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmProfile.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegConf.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmRegWkshp.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.frmReport.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.Properties.Resources.resources
-C:\Users\Logan\Documents\School\College\FBLADeskProject\FBLADeskProject\obj\x86\Debug\FBLADeskProject.csproj.GenerateResource.Cache

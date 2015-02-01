@@ -17,25 +17,17 @@ namespace FBLADeskProject
 {
     public partial class frmCreateWkshp : Form
     {
-        private int type;
-        private string userID;
+        private Participant part;
         // storing the type and userID throughout the program
-        public int Type
-        {
-            set
-            {
-                type = value;
-            }
-        }
-        public string UserID
+        internal Participant Part
         {
             get
             {
-                return userID;
+                return part;
             }
             set
             {
-                userID = value;
+                part = value;
             }
         }
         public frmCreateWkshp()
@@ -121,11 +113,10 @@ namespace FBLADeskProject
             {
                 MessageBox.Show("Sorry all fields must be filled in", "Error");
             }
-            string startDate = datePicker.Value.ToString("yyyy-MM-dd");
-            string startTime = timePicker.Value.ToString("HH:mm:ss");
-            startDate = startDate + " "+ startTime;
+            DateTime startDate = datePicker.Value.Add(timePicker.Value.TimeOfDay);
+            Workshop workshop = new Workshop(confcode, wname, wdesc, startDate);
             DBConnect db = new DBConnect();
-            bool success = db.CreateWkshp(wname, wdesc, startDate, confcode);
+            bool success = db.CreateWkshp(workshop);
             if (success)
             {
                 var prompt = MessageBox.Show("Workshop created successfully, create another?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -139,8 +130,7 @@ namespace FBLADeskProject
                 {
                     // if not then close the form and bring them back to the home screen
                     frmHome frmHome = new frmHome();
-                    frmHome.Type = type;
-                    frmHome.UserID = userID;
+                    frmHome.Part = part;
                     frmHome.Show();
                     this.Hide();
                 }
@@ -154,8 +144,7 @@ namespace FBLADeskProject
         private void btnCancel_Click(object sender, EventArgs e)
         {
             frmHome frmHome = new frmHome();
-            frmHome.Type = type;
-            frmHome.UserID = userID;
+            frmHome.Part = part;
             frmHome.Show();
             this.Hide();
         }

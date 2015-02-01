@@ -16,26 +16,18 @@ namespace FBLADeskProject
 {
     public partial class frmProfile : Form
     {
-        private int type;
-        private string userID;
+        private Participant part;
         private string userName;
         // storing the type and userID throughout the program
-        public int Type
-        {
-            set
-            {
-                type = value;
-            }
-        }
-        public string UserID
+        internal Participant Part
         {
             get
             {
-                return userID;
+                return part;
             }
             set
             {
-                userID = value;
+                part = value;
             }
         }
         public frmProfile()
@@ -46,8 +38,7 @@ namespace FBLADeskProject
         private void btnCancel_Click(object sender, EventArgs e)
         {
             frmHome frmHome = new frmHome();
-            frmHome.Type = type;
-            frmHome.UserID = userID;
+            frmHome.Part = part;
             frmHome.Show();
             this.Hide();
         }
@@ -67,7 +58,7 @@ namespace FBLADeskProject
                 if (secondPrompt == DialogResult.Yes)
                 {
                     DBConnect db = new DBConnect();
-                    db.DeleteUser(userID);
+                    db.DeleteUser(part.UUID);
                     MessageBox.Show("All data tied to this account had been deleted", "Deletion successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
@@ -77,14 +68,12 @@ namespace FBLADeskProject
         private void frmProfile_Load(object sender, EventArgs e)
         {
             DBConnect db = new DBConnect();
-            string[] userInfo = db.FetchUserData(userID);
-            lblFirstName.Text = userInfo[0];
-            lblLastName.Text = userInfo[1];
-            string[] types = {"Über Admin", "Chapter head", "Adviser", "Member", "Guest"};
-            lblType.Text = types[type - 1];
-            lblConf.Text = userInfo[2];
-            lblChapNum.Text = userInfo[3];
-            userName = db.FetchUserName(userID);
+            lblFirstName.Text = part.FirstName;
+            lblLastName.Text = part.LastName;
+            lblType.Text = part.TypeString;
+            lblConf.Text = part.Chapter.ToString();
+            lblChapNum.Text = part.Chapter.ToString();
+            userName = db.FetchUserName(part.UUID);
             lblUser.Text = userName;
         }
 

@@ -17,24 +17,17 @@ namespace FBLADeskProject
     public partial class frmCreateUser : Form
     {
         public int userType = 0;
-        private string userID;
-        private int type;
-        public int Type
-        {
-            set
-            {
-                type = value;
-            }
-        }
-        public string UserID
+        private Participant part;
+        // storing the type and userID throughout the program
+        internal Participant Part
         {
             get
             {
-                return userID;
+                return part;
             }
             set
             {
-                userID = value;
+                part = value;
             }
         }
         public frmCreateUser()
@@ -45,8 +38,7 @@ namespace FBLADeskProject
         private void btnCancel_Click(object sender, EventArgs e)
         {
             frmHome frmHome = new frmHome();
-            frmHome.Type = type;
-            frmHome.UserID = userID;
+            frmHome.Part = Part;
             frmHome.Show();
             this.Hide();
         }
@@ -87,7 +79,8 @@ namespace FBLADeskProject
                 string password = txtPasswd.Text;
 
                 // create the participant and then the user in the database
-                string partid = db.CreatePart(userType, firstName, lastName, chapNum);
+                Participant part = new Participant(firstName, lastName, userType, chapNum);
+                string partid = db.CreatePart(part);
                 bool success = db.CreateUser(partid, username, password);
                 // tell the admin it was successful
                 if (success)
@@ -103,8 +96,7 @@ namespace FBLADeskProject
                     {
                         // if not then close the form and bring them back to the home screen
                         frmHome frmHome = new frmHome();
-                        frmHome.Type = type;
-                        frmHome.UserID = userID;
+                        frmHome.Part = part;
                         frmHome.Show();
                         this.Hide();
                     }
@@ -126,7 +118,7 @@ namespace FBLADeskProject
              * 4 - Member
              * 5 - Guest
              */
-            if (type >= 2)
+            if (part.Type >= 2)
             {
                 userType = cmbType.SelectedIndex + 3;
             }
@@ -151,7 +143,7 @@ namespace FBLADeskProject
         private void frmCreateUser_Load(object sender, EventArgs e)
         {
             // make sure chapter users cannot create other chapter users
-            if (type >= 2)
+            if (part.Type >= 2)
             {
                 cmbType.Items.RemoveAt(0);
             }

@@ -14,25 +14,17 @@ namespace FBLADeskProject
 {
     public partial class frmReport : Form
     {
-        // store the type and userID for persistence around the program
-        private string userID;
-        private int type;
-        public int Type
-        {
-            set
-            {
-                type = value;
-            }
-        }
-        public string UserID
+        private Participant part;
+        // storing the type and userID throughout the program
+        internal Participant Part
         {
             get
             {
-                return userID;
+                return part;
             }
             set
             {
-                userID = value;
+                part = value;
             }
         }
         public frmReport()
@@ -84,14 +76,14 @@ namespace FBLADeskProject
                 }
                 DBConnect db = new DBConnect();
                 // get the conference attendees for the selected conference
-                List<string>[] dataTable = db.GetConferenceAttendees(confs[cmbConf.SelectedIndex]);
-                for (int i = 0; i < dataTable[0].Count; i++)
+                List<Participant> participants = db.GetConferenceAttendees(confs[cmbConf.SelectedIndex]);
+                for (int i = 0; i < participants.Count; i++)
                 {
-                    for (int c = 0; c < dataTable.GetLength(0); c++)
-                    {
-                        // go through the List and then add each value as a new cell
-                        report.AddCell(dataTable[c][i]);
-                    }
+                    // go through the List and then add each value as a new cell
+                    report.AddCell(participants[i].LastName);
+                    report.AddCell(participants[i].FirstName);
+                    report.AddCell(participants[i].TypeString);
+                    report.AddCell(participants[i].Chapter.ToString());
                 }
                 // add the generated table to the report
                 confReport.Add(report);
@@ -110,8 +102,7 @@ namespace FBLADeskProject
         private void btnCancel_Click(object sender, EventArgs e)
         {
             frmHome frmHome = new frmHome();
-            frmHome.UserID = userID;
-            frmHome.Type = type;
+            frmHome.Part = part;
             frmHome.Show();
             this.Hide();
         }
@@ -119,12 +110,12 @@ namespace FBLADeskProject
         private void frmReport_Load(object sender, EventArgs e)
         {
             // if th admin allow them to do the master reports
-            if (type == 1)
+            if (part.Type == 1)
             {
                 cmbConf.Enabled = true;
             }
             // if a chapter head allow them to do workshop reports only
-            else if (type == 2)
+            else if (part.Type == 2)
             {
                 cmbConf.Enabled = true;
                 btnConfReport.Visible = false;
@@ -176,17 +167,18 @@ namespace FBLADeskProject
                 Font tableTitleFont = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
                 DBConnect db = new DBConnect();
                 // get list of workshops
-                List<string>[] workshops = db.GetWorkshops(confs[cmbConf.SelectedIndex]);
-                int wkshpsCount = workshops[0].Count;
-                string wname, wdesc, startime;
+                List<Workshop> workshops = db.GetWorkshops(confs[cmbConf.SelectedIndex]);
+                string wname, wdesc;
+                DateTime startDate;
                 // create a page for each workshop
-                for (int i = 0; i < wkshpsCount; i++)
+                foreach (Workshop wkshp in workshops)
                 {
                     wkshpReport.NewPage();
                     // add the table in for the report
                     PdfPTable report = new PdfPTable(3);
                     // make sure it starts a bit after so it doesn't overlap with the title
                     report.SpacingBefore = 20f;
+                    report.HeaderRows = 1;
                     foreach (string title in headerTitles)
                     {
                         // changing color and font helps make it distinguishable as header
@@ -195,21 +187,20 @@ namespace FBLADeskProject
                         cell.Border = 0;
                         report.AddCell(cell);
                     }
-                    wname = workshops[0][i];
-                    wdesc = workshops[1][i];
-                    startime = workshops[2][i];
+                    wname = wkshp.Name;
+                    wdesc = wkshp.Description;
+                    startDate = wkshp.Date;
                     wkshpReport.Add(new Paragraph("Workshop name: " + wname));
                     wkshpReport.Add(new Paragraph("Workshop description: " + wdesc));
-                    wkshpReport.Add(new Paragraph("Workshop start time: " + startime));
+                    wkshpReport.Add(new Paragraph("Workshop start time: " + startDate.ToString("yyyy-MM-dd HH:mm:ss")));
                     // get attendees for workshop
-                    List<string>[] attendees = db.GetRegistrations(workshops[3][i]);
-                    for (int c = 0; c < attendees[0].Count; c++)
+                    List<Participant> attendees = db.GetRegistrations(wkshp.UUID);
+                    foreach (Participant part in attendees)
                     {
-                        for (int a = 0; a < 3; a++)
-                        {
-                            // then add their details to the table
-                            report.AddCell(attendees[a][c]);
-                        }
+                        // then add their details to the table
+                        report.AddCell(part.LastName);
+                        report.AddCell(part.FirstName);
+                        report.AddCell(part.Chapter.ToString());
                     }
                     // add the generated table to the report
                     wkshpReport.Add(report);
@@ -256,7 +247,8 @@ namespace FBLADeskProject
                 string[] headerTitles = { "Start time", "Name", "Description" };
                 Font tableTitleFont = new Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
                 DBConnect db = new DBConnect();
-                List<string>[] schedule = db.GetSchedule(userID);
+                List<Workshop> schedule = db.GetSchedule(part.UUID);
+                report.HeaderRows = 1;
                 foreach (string title in headerTitles)
                 {
                     // changing color and font helps make it distinguishable as header
@@ -265,13 +257,11 @@ namespace FBLADeskProject
                     cell.Border = 0;
                     report.AddCell(cell);
                 }
-                for (int i = 0; i < schedule[0].Count; i++)
+                foreach (Workshop wkshp in schedule)
                 {
-                    for (int c = 0; c < schedule.GetLength(0); c++)
-                    {
-                        // go through the List and then add each value as a new cell
-                        report.AddCell(schedule[c][i]);
-                    }
+                    report.AddCell(wkshp.Date.ToShortDateString());
+                    report.AddCell(wkshp.Name);
+                    report.AddCell(wkshp.Description);
                 }
                 scheduleReport.Add(report);
                 // close the document and then write it to disk

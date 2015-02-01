@@ -39,7 +39,6 @@ namespace FBLADeskProject
             // get form values
             string userName = txtUser.Text;
             string password = txtPassword.Text;
-            int type;
             // setup database connector
             DBConnect db = new DBConnect();
             // get uuid of user
@@ -52,12 +51,10 @@ namespace FBLADeskProject
             else if (userID != "")
             {
                 // find out what permissions the user has
-                type = db.GetType(userID);
+                Participant part = db.GetParticipant(userID);
                 frmHome frmHome = new frmHome();
-                // push type to next form
-                frmHome.Type = type;
-                // push id to next form
-                frmHome.UserID = userID;
+                // push Participant to next form, so users data moves with them
+                frmHome.Part = part;
                 frmHome.Show();
                 // can't close this otherwise whole app closes
                 this.Hide();

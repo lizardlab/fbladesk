@@ -17,25 +17,17 @@ namespace FBLADeskProject
 {
     public partial class frmHome : Form
     {
-        // store the type and userID for persistence around the program
-        private string userID;
-        private int type;
-        public int Type
-        {
-            set
-            {
-                type = value;
-            }
-        }
-        public string UserID
+        private Participant part;
+        // storing the type and userID throughout the program
+        internal Participant Part
         {
             get
             {
-                return userID;
+                return part;
             }
             set
             {
-                userID = value;
+                part = value;
             }
         }
         public frmHome()
@@ -46,8 +38,7 @@ namespace FBLADeskProject
         private void btnCreateWkshp_Click(object sender, EventArgs e)
         {
             frmCreateWkshp frmCreateWkshp = new frmCreateWkshp();
-            frmCreateWkshp.Type = type;
-            frmCreateWkshp.UserID = userID;
+            frmCreateWkshp.Part = part;
             frmCreateWkshp.Show();
             this.Hide();
         }
@@ -55,8 +46,7 @@ namespace FBLADeskProject
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
             frmCreateUser frmCreateUser = new frmCreateUser();
-            frmCreateUser.Type = type;
-            frmCreateUser.UserID = userID;
+            frmCreateUser.Part = part;
             frmCreateUser.Show();
             this.Hide();
         }
@@ -69,8 +59,7 @@ namespace FBLADeskProject
         private void btnRegConf_Click(object sender, EventArgs e)
         {
             frmRegConf frmRegConf = new frmRegConf();
-            frmRegConf.UserID = userID;
-            frmRegConf.Type = type;
+            frmRegConf.Part = part;
             frmRegConf.Show();
             this.Hide();
         }
@@ -78,7 +67,7 @@ namespace FBLADeskProject
         private void frmHome_Load(object sender, EventArgs e)
         {
             DBConnect db = new DBConnect();
-            if (db.CheckConf(UserID))
+            if (db.CheckConf(part.UUID))
             {
                 // if they already registered for a conference, prevent them from changing it
                 btnRegConf.Enabled = false;
@@ -89,7 +78,7 @@ namespace FBLADeskProject
                 btnRegWkshp.Enabled = false;
             }
             // if the user does not have chapter permissions disable and remove adminstrative functions
-            if (type > 2 || type == 0)
+            if (part.Type > 2 || part.Type == 0)
             {
                 ParticipantUI();
             }
@@ -107,8 +96,7 @@ namespace FBLADeskProject
         private void btnRegWkshp_Click(object sender, EventArgs e)
         {
             frmRegWkshp frmRegWkshp = new frmRegWkshp();
-            frmRegWkshp.UserID = userID;
-            frmRegWkshp.Type = type;
+            frmRegWkshp.Part = part;
             frmRegWkshp.Show();
             this.Hide();
         }
@@ -127,8 +115,7 @@ namespace FBLADeskProject
         private void btnReport_Click(object sender, EventArgs e)
         {
             frmReport frmReport = new frmReport();
-            frmReport.UserID = userID;
-            frmReport.Type = type;
+            frmReport.Part = part;
             frmReport.Show();
             this.Hide();
         }
@@ -136,8 +123,7 @@ namespace FBLADeskProject
         private void btnProfile_Click(object sender, EventArgs e)
         {
             frmProfile frmProfile = new frmProfile();
-            frmProfile.UserID = userID;
-            frmProfile.Type = type;
+            frmProfile.Part = part;
             frmProfile.Show();
             this.Hide();
         }

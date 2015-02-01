@@ -18,24 +18,17 @@ namespace FBLADeskProject
     public partial class frmRegConf : Form
     {
         public string confCode = "";
-        private string userID;
-        private int type;
-        public int Type
-        {
-            set
-            {
-                type = value;
-            }
-        }
-        public string UserID
+        private Participant part;
+        // storing the type and userID throughout the program
+        internal Participant Part
         {
             get
             {
-                return userID;
+                return part;
             }
             set
             {
-                userID = value;
+                part = value;
             }
         }
         public frmRegConf()
@@ -46,8 +39,7 @@ namespace FBLADeskProject
         private void btnCancel_Click(object sender, EventArgs e)
         {
             frmHome frmHome = new frmHome();
-            frmHome.Type = type;
-            frmHome.UserID = userID;
+            frmHome.Part = part;
             frmHome.Show();
             this.Hide();
         }
@@ -57,10 +49,9 @@ namespace FBLADeskProject
             if (confCode != "")
             {
                 DBConnect db = new DBConnect();
-                db.RegConf(UserID, confCode);
+                db.RegConf(part.UUID, confCode);
                 frmHome frmHome = new frmHome();
-                frmHome.UserID = userID;
-                frmHome.Type = type;
+                frmHome.Part = part;
                 frmHome.Show();
                 this.Hide();
             }

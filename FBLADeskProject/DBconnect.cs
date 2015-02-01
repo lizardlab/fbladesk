@@ -86,6 +86,31 @@ namespace FBLADeskProject
                 return false;
             }
         }
+        // get the details of the particpant
+        public Participant GetParticipant(string uuid)
+        {
+            // create the parameters for query
+            string query = "SELECT * FROM participants WHERE uuid=@uuid";
+            if (this.OpenConnection() == true)
+            {
+                // create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                // pass in data as parameters to prevent SQL injection
+                cmd.Parameters.AddWithValue("@uuid", uuid);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    int type = dataReader.GetInt32("type");
+                    int chapNum = dataReader.GetInt32("chapnum");
+                    string fname = dataReader.GetString("fname");
+                    string lname = dataReader.GetString("lname");
+                    string conf = dataReader.GetString("confcode");
+                    Participant part = new Participant(uuid, fname, lname, type, chapNum, conf);
+                    return part;
+                }
+            }
+            return null;
+        }
         // get the code for the conference they're attending
         public string GetConf(string uuid)
         {
@@ -234,27 +259,8 @@ namespace FBLADeskProject
             }
             return "";
         }
-        // gets the user type for setting permissions
-        public int GetType(string uuid)
-        {
-            string query = "SELECT (type+0) FROM participants WHERE uuid=@uuid";
-            if (this.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@uuid", uuid);
-                int type = 0;
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    type = dataReader.GetInt32(0);
-                }
-                this.CloseConnection();
-                return type;
-            }
-            return 0;
-        }
         // method that creates the conference workshop
-        public bool CreateWkshp(string wkname, string wkdesc, string wkdate, string conf)
+        public bool CreateWkshp(Workshop workshop)
         {
             // create the UUID for primary key
             string uuid = System.Guid.NewGuid().ToString();
@@ -268,10 +274,10 @@ namespace FBLADeskProject
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 // pass in data as parameters to prevent SQL injection
                 cmd.Parameters.AddWithValue("@uuid", uuid);
-                cmd.Parameters.AddWithValue("@conf", conf);
-                cmd.Parameters.AddWithValue("@wname", wkname);
-                cmd.Parameters.AddWithValue("@wdate", wkdate);
-                cmd.Parameters.AddWithValue("@wdesc", wkdesc);
+                cmd.Parameters.AddWithValue("@conf", workshop.Conf);
+                cmd.Parameters.AddWithValue("@wname", workshop.Name);
+                cmd.Parameters.AddWithValue("@wdate", workshop.Date);
+                cmd.Parameters.AddWithValue("@wdesc", workshop.Description);
                 // Execute command
                 try
                 {
@@ -291,7 +297,7 @@ namespace FBLADeskProject
             return false;
         }
         // method that creates the conference participant
-        public string CreatePart(int type, string fname, string lname, int chap)
+        public string CreatePart(Participant part)
         {
             // create the UUID for primary key
             string uuid = System.Guid.NewGuid().ToString();
@@ -305,10 +311,10 @@ namespace FBLADeskProject
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 // pass in data as parameters to prevent SQL injection
                 cmd.Parameters.AddWithValue("@uuid", uuid);
-                cmd.Parameters.AddWithValue("@type", type);
-                cmd.Parameters.AddWithValue("@fname", fname);
-                cmd.Parameters.AddWithValue("@lname", lname);
-                cmd.Parameters.AddWithValue("@chapnum", chap);
+                cmd.Parameters.AddWithValue("@type", part.Type);
+                cmd.Parameters.AddWithValue("@fname", part.FirstName);
+                cmd.Parameters.AddWithValue("@lname", part.LastName);
+                cmd.Parameters.AddWithValue("@chapnum", part.Chapter);
                 // Execute command
                 try
                 {
@@ -420,28 +426,19 @@ namespace FBLADeskProject
             return salty;
         }
         // provides data for a report on the conference attendees
-        public List<string>[] GetConferenceAttendees(string confcode)
+        public List<Participant> GetConferenceAttendees(string confcode)
         {
-            List<string>[] result = new List<string>[4];
-            result[0] = new List<string>();
-            result[1] = new List<string>();
-            result[2] = new List<string>();
-            result[3] = new List<string>();
+            List<Participant> result = new List<Participant>();
             if (this.OpenConnection() == true)
             {
                 string query = "SELECT * FROM participants WHERE confcode=@conf ORDER BY type, lname ASC";
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@conf", confcode);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                string[] types = { "Über Admin", "Chapter Head", "Adviser", "Member", "Guest" };
-                int type = 0;
                 while (dataReader.Read())
                 {
-                    result[0].Add(dataReader.GetString("fname"));
-                    result[1].Add(dataReader.GetString("lname"));
-                    type = dataReader.GetInt32("type");
-                    result[2].Add(types[type-1]);
-                    result[3].Add(dataReader.GetInt32("chapnum").ToString());
+                    Participant part = new Participant(dataReader.GetString("fname"), dataReader.GetString("lname"), dataReader.GetInt32("type"), dataReader.GetInt32("chapnum"));
+                    result.Add(part);
                 }
                 this.CloseConnection();
             }
@@ -449,13 +446,9 @@ namespace FBLADeskProject
         }
         // this gets the workshops available from one conference to show
         // the selection the user has to sign up from
-        public List<string>[] GetWorkshops(string confcode)
+        public List<Workshop> GetWorkshops(string confcode)
         {
-            List<string>[] result = new List<string>[4];
-            result[0] = new List<string>();
-            result[1] = new List<string>();
-            result[2] = new List<string>();
-            result[3] = new List<string>();
+            List<Workshop> result = new List<Workshop>();
             if (this.OpenConnection() == true)
             {
                 string query = "SELECT * FROM workshops WHERE confcode=@conf";
@@ -464,10 +457,8 @@ namespace FBLADeskProject
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    result[0].Add(dataReader.GetString("wname"));
-                    result[1].Add(dataReader.GetString("wdesc"));
-                    result[2].Add(dataReader.GetDateTime("wdate").ToString());
-                    result[3].Add(dataReader.GetString("uuid"));
+                    Workshop workshop = new Workshop(dataReader.GetString("uuid"), confcode, dataReader.GetString("wname"), dataReader.GetString("wdesc"), dataReader.GetDateTime("wdate"));
+                    result.Add(workshop);
                 }
                 this.CloseConnection();
             }
@@ -491,27 +482,6 @@ namespace FBLADeskProject
             }
             return true;
         }
-        // gets the associated records of the user to display for profile
-        public string[] FetchUserData(string uuid)
-        {
-            string query = "SELECT * FROM participants WHERE uuid=@uuid";
-            string[] userData = new string[4];
-            if (this.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@uuid", uuid);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    userData[0] = dataReader.GetString("fname");
-                    userData[1] = dataReader.GetString("lname");
-                    userData[2] = dataReader.GetString("confcode");
-                    userData[3] = dataReader.GetString("chapnum");
-                }
-                this.CloseConnection();
-            }
-            return userData;
-        }
         // finds the username for the referenced userID
         public string FetchUserName(string uuid)
         {
@@ -531,13 +501,10 @@ namespace FBLADeskProject
             return userName;
         }
         // gets the students attending a certain workshop
-        public List<string>[] GetRegistrations(string wkshp)
+        public List<Participant> GetRegistrations(string wkshp)
         {
             string query = "SELECT * FROM participants p LEFT JOIN registrations r ON p.uuid = r.partid WHERE r.wkshpid=@wkshp";
-            List<string>[] result = new List<string>[3];
-            result[0] = new List<string>();
-            result[1] = new List<string>();
-            result[2] = new List<string>();
+            List<Participant> result = new List<Participant>();
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -545,22 +512,18 @@ namespace FBLADeskProject
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    result[0].Add(dataReader.GetString("lname"));
-                    result[1].Add(dataReader.GetString("fname"));
-                    result[2].Add(dataReader.GetInt32("chapnum").ToString());
+                    Participant part = new Participant(dataReader.GetString("fname"), dataReader.GetString("lname"), dataReader.GetInt32("chapnum"));
+                    result.Add(part);
                 }
                 this.CloseConnection();
             }
             return result;
         }
         // get participants schedule
-        public List<string>[] GetSchedule(string participant)
+        public List<Workshop> GetSchedule(string participant)
         {
             string query = "SELECT * FROM workshops w LEFT JOIN registrations r ON w.uuid = r.wkshpid WHERE r.partid=@participant ORDER BY wdate ASC";
-            List<string>[] result = new List<string>[3];
-            result[0] = new List<string>();
-            result[1] = new List<string>();
-            result[2] = new List<string>();
+            List<Workshop> result = new List<Workshop>();
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -568,9 +531,8 @@ namespace FBLADeskProject
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    result[0].Add(dataReader.GetDateTime("wdate").ToString());
-                    result[1].Add(dataReader.GetString("wname"));
-                    result[2].Add(dataReader.GetString("wdesc"));
+                    Workshop wkshp = new Workshop(dataReader.GetString("wname"), dataReader.GetString("wdesc"), dataReader.GetDateTime("wdate"));
+                    result.Add(wkshp);
                 }
                 this.CloseConnection();
             }

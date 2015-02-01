@@ -15,25 +15,18 @@ namespace FBLADeskProject
 {
     public partial class frmRegWkshp : Form
     {
-        private string userID;
-        private int type;
-        private List<string>[] workshops;
-        public int Type
-        {
-            set
-            {
-                type = value;
-            }
-        }
-        public string UserID
+        private List<Workshop> workshops;
+        private Participant part;
+        // storing the type and userID throughout the program
+        internal Participant Part
         {
             get
             {
-                return userID;
+                return part;
             }
             set
             {
-                userID = value;
+                part = value;
             }
         }
         public frmRegWkshp()
@@ -49,19 +42,18 @@ namespace FBLADeskProject
         private void frmRegWkshp_Load(object sender, EventArgs e)
         {
             DBConnect db = new DBConnect();
-            string confcode = db.GetConf(userID);
+            string confcode = db.GetConf(part.UUID);
             workshops = db.GetWorkshops(confcode);
-            for (int i = 0; i < workshops.GetLength(0); i++)
+            for (int i = 0; i < workshops.Count; i++)
             {
-                cmbWorkshops.Items.Add(workshops[0][i]);
+                cmbWorkshops.Items.Add(workshops[i].Name);
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             frmHome frmHome = new frmHome();
-            frmHome.UserID = userID;
-            frmHome.Type = type;
+            frmHome.Part = part;
             frmHome.Show();
             this.Hide();
         }
@@ -69,10 +61,9 @@ namespace FBLADeskProject
         private void cmbWorkshops_SelectedIndexChanged(object sender, EventArgs e)
         {
             int workshopSelection = cmbWorkshops.SelectedIndex;
-            lblTitle.Text = workshops[0][workshopSelection];
-            lblDescription.Text = workshops[1][workshopSelection];
-            DateTime startDate = new DateTime();
-            startDate = DateTime.Parse(workshops[2][workshopSelection]);
+            lblTitle.Text = workshops[workshopSelection].Name;
+            lblDescription.Text = workshops[workshopSelection].Description;
+            DateTime startDate = workshops[workshopSelection].Date;
             lblDate.Text = startDate.ToShortDateString();
             lblTime.Text = startDate.ToShortTimeString();
         }
@@ -86,14 +77,13 @@ namespace FBLADeskProject
             else
             {
                 DBConnect db = new DBConnect();
-                string wkshp = workshops[3][cmbWorkshops.SelectedIndex];
-                bool success = db.RegWkshp(userID, wkshp);
+                string wkshp = workshops[cmbWorkshops.SelectedIndex].UUID;
+                bool success = db.RegWkshp(part.UUID, wkshp);
                 if (success)
                 {
                     MessageBox.Show("Success");
                     frmHome frmHome = new frmHome();
-                    frmHome.UserID = userID;
-                    frmHome.Type = type;
+                    frmHome.Part = part;
                     frmHome.Show();
                     this.Hide();
                 }
